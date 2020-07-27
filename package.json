@@ -4,9 +4,11 @@
   "description": "## Student Instructions",
   "main": "app.js",
   "scripts": {
-    "start": "webpack-dev-server --config=webpack.config.js",
-    "build": "webpack --config=webpack.config.js",
-    "dev": "node main.js"
+    "start:wds": "webpack-dev-server --config=config/webpack.dev.js",
+    "start:dev": "nodemon --inspect --watch server.js --watch config main.js",
+    "build:dev": "webpack --config=config/webpack.dev.js",
+    "start:prod": "NODE_ENV=production node main.js",
+    "build:prod": "NODE_ENV=production webpack --config=config/webpack.prod.js"
   },
   "repository": {
     "type": "git",
@@ -28,10 +30,10 @@
     "babel-loader": "^8.1.0",
     "babel-plugin-transform-async-to-promises": "^0.8.15",
     "css-loader": "^4.0.0",
-    "extract-loader": "^5.1.0",
     "file-loader": "^6.0.0",
     "html-loader": "^1.1.0",
     "html-webpack-plugin": "^4.3.0",
+    "mini-css-extract-plugin": "^0.9.0",
     "nodemon": "^2.0.4",
     "style-loader": "^1.2.1",
     "webpack": "^4.44.0",

@@ -6,7 +6,7 @@ const port = 3001;
 
 const app = express();
 
-const config = require('./webpack.config.js')
+const config = require('./config/webpack.dev.js')
 const compiler = webpack(config)
 const webpackDevMiddleware = require('webpack-dev-middleware')(
   compiler,

@@ -1,6 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
-// const HtmlWebpackPlugin = require('html-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: {
@@ -8,7 +8,7 @@ module.exports = {
   },
   mode: 'development',
   output: {
-    path: path.resolve(__dirname, 'public'),
+    path: path.resolve(__dirname, '../public'),
     filename: '[name]-bundle.js',
     publicPath: '/'
   },
@@ -21,6 +21,7 @@ module.exports = {
       colors: true
     }
   },
+  devtool: 'source-map',
   module: {
     rules: [
       {
@@ -47,15 +48,15 @@ module.exports = {
       {
         test: /\.html$/,
         use: [
-          {
-            loader: 'file-loader',
-            options: {
-              name: '[name].html'
-            }
-          },
-          {
-            loader: 'extract-loader'
-          },
+          // {
+          //   loader: 'file-loader',
+          //   options: {
+          //     name: '[name].html'
+          //   }
+          // },
+          // {
+          //   loader: 'extract-loader'
+          // },
           // extract-loader == separate file not included in the bundle,
           {
             loader: 'html-loader',
@@ -87,10 +88,10 @@ module.exports = {
       }
     ]
   },
-  // plugins: [
-  //   new HtmlWebpackPlugin({
-  //     template: './public/index.html'
-  //   })
-  // ]
-  plugins: [new webpack.HotModuleReplacementPlugin()]
+  plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+    new HtmlWebpackPlugin({
+      template: './src/index.html'
+    })
+  ]
 };

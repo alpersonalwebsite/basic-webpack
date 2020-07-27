@@ -1,13 +1,9 @@
+require('webpack-hot-middleware/client?reload=true');
 require('./css/app.css');
 require('./index.html');
 
-require('webpack-hot-middleware/client');
-
-const hi = async () => {
-  await console.log('hi');
-};
-
-hi();
+import dino from '../data/dino.json'
+console.log(dino)
 
 // Create Dino Constructor
 
