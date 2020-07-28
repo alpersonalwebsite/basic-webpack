@@ -4,7 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: {
-    app: ['./src/app.js']
+    app: ['webpack-hot-middleware/client?reload=true', './src/app.js']
   },
   mode: 'development',
   output: {

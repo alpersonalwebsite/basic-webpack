@@ -1,7 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const MiniCSSExtractPlugin = require('mini-css-extract-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 module.exports = {
@@ -29,13 +29,13 @@ module.exports = {
         test: /\.css$/,
         use: [
           {
-            loader: MiniCSSExtractPlugin.loader
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              publicPath: '/public/path/to/',
+            },
           },
-          {
-            loader: 'css-loader'
-          }
-          // Remember css-loader will run first
-        ]
+          'css-loader',
+        ],
       },
       // {
       //   test: /\.html$/,
@@ -90,10 +90,13 @@ module.exports = {
     ]
   },
   plugins: [
-    new OptimizeCSSAssetsPlugin(),
-    new MiniCSSExtractPlugin({
-      filename: '[name]-[contenthash].css'
+    new MiniCssExtractPlugin({
+      // Options similar to the same options in webpackOptions.output
+      // both options are optional
+      filename: '[name].css',
+      chunkFilename: '[id].css',
     }),
+    new OptimizeCSSAssetsPlugin(),
     new HtmlWebpackPlugin({
       template: './src/index.html'
     })
