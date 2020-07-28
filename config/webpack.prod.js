@@ -2,6 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCSSExtractPlugin = require('mini-css-extract-plugin');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 module.exports = {
   entry: {
@@ -28,7 +29,7 @@ module.exports = {
         test: /\.css$/,
         use: [
           {
-            loader: 'style-loader'
+            loader: MiniCSSExtractPlugin.loader
           },
           {
             loader: 'css-loader'
@@ -89,7 +90,10 @@ module.exports = {
     ]
   },
   plugins: [
-    new MiniCSSExtractPlugin(),
+    new OptimizeCSSAssetsPlugin(),
+    new MiniCSSExtractPlugin({
+      filename: '[name]-[contenthash].css'
+    }),
     new HtmlWebpackPlugin({
       template: './src/index.html'
     })
