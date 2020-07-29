@@ -1,5 +1,5 @@
-require('./css/app.css');
-require('./index.html');
+require('./css/app.css')
+require('./index.html')
 
 import { Dinos } from '../data/dino.json'
 console.log(Dinos)
@@ -10,10 +10,10 @@ console.log(Dinos)
 function Dino(obj) {
   return Object.assign({}, obj, {
     timestamp: Date.now()
-  });
+  })
 }
 
-// Create Dino Objects
+// Create 9 Dino Objects
 Dinos.map((element) => {
   global[element.species] = new Dino(element)
 })
@@ -22,18 +22,30 @@ Dinos.map((element) => {
 
 // I decided to use a constructor function
 function Human({ name, height, weight, diet }) {
-
+  this.name = name
+  this.height = { ...height }
+  this.weight = weight
+  this.diet = diet
 }
-
-let human = new Human(obj)
 
 // Use IIFE to get human data from form
 
-(
-  function getFormData() {
-    
+const humanDataObj = (
+  function () {
+    return {
+      name: document.querySelector('#name').value,
+      height: {
+        feet: document.querySelector('#feet').value,
+        inches: document.querySelector('#inches').value
+      },
+      weight: document.querySelector('#weight').value,
+      diet: document.querySelector('#diet').value,
+    }
   }
 )()
+
+let human = new Human(humanDataObj)
+console.log(human)
 
 // Create Dino Compare Method 1
 // NOTE: Weight in JSON file is in lbs, height in inches.
@@ -49,11 +61,39 @@ let human = new Human(obj)
 // Add tiles to DOM
 
 // Remove form from screen
-const btn = document.querySelector("#btn")
+const btnCompare = document.querySelector('.compare')
 
-btn.addEventListener("click", () => {
-  console.log("Button clicked.");
-});
+btnCompare.addEventListener('click', () => {
+  console.log('Button Compare clicked.')
+  document.querySelector('#container').classList.add('hide')
+  createButton('div', 'Back!', ['btn', 'goBack'], 'form-container', 'container')
+})
+
+// Yes, I could have a button in the HTML template and toggle the class, but... I wanted to practice JS
+function createButton (wrapper, text, cssClass, parentWrapper, elementToShowID) {
+  const btn = document.createElement(wrapper)
+  const btnContent = document.createTextNode(text)
+  btn.appendChild(btnContent)
+  btn.classList.add(...cssClass)
+
+  const positionTarget = document.querySelector(`.${parentWrapper}`)
+  positionTarget.appendChild(btn)
+
+  // we expect the last class is the one we are going to use to identify the element
+  btn.addEventListener('click', () => listenerForButton(cssClass[cssClass.length -1], elementToShowID))
+}
+
+function listenerForButton (targetClass, elementToShowID) {
+  console.log('Button Back clicked.')
+  document.querySelector(`#${elementToShowID}`).classList.remove('hide')
+
+  // when we remove an element with a listener we have to remove the listener as well
+  const btn = document.querySelector(`.${targetClass}`)
+  btn.removeEventListener('click', listenerForButton, false)
+  btn.remove()
+}
+
+
 
 
 // On button click, prepare and display infographic
