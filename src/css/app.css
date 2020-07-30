@@ -125,7 +125,7 @@ p {
   background: #eee;
   padding: 1.3em;
   text-align: left;
-  max-width: 400px;
+  max-width: 404px;
   margin: 0 auto;
 }
 
@@ -180,4 +180,14 @@ select {
 /* Helpers */
 .hide {
   display: none;
+}
+
+.grid {
+  display: inline-block;
+  width: 130px;
+  height: 75px;
+  vertical-align: text-top;
+  border: 1px solid #000;
+  margin: 1px;
+  text-align: center;
 }
