@@ -125,7 +125,7 @@ p {
   background: #eee;
   padding: 1.3em;
   text-align: left;
-  max-width: 404px;
+  max-width: 554px;
   margin: 0 auto;
 }
 
@@ -184,10 +184,14 @@ select {
 
 .grid {
   display: inline-block;
-  width: 130px;
-  height: 75px;
+  width: 180px;
+  height: 230px;
   vertical-align: text-top;
   border: 1px solid #000;
   margin: 1px;
   text-align: center;
+}
+
+.grid img {
+  width: 100%;
 }
