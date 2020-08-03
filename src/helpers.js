@@ -1,6 +1,7 @@
 // Helpers
 
 // For data
+// We generate a new array including human and setting its proper index on the array
 export function shapeData(originalDinoArr, humanOb) {
   // Create new array including human
   const arrMiddle = Math.floor(originalDinoArr.length / 2);
@@ -10,7 +11,7 @@ export function shapeData(originalDinoArr, humanOb) {
     ...originalDinoArr.slice(arrMiddle)
   ];
 
-  // Replace bird fact with rubric
+  // We replace bird fact with rubric string
   // We map to avoid referring to the last element of the array in case the data shape changes
   arrWithHuman.map(el => {
     if (el.species.trim().toLowerCase() === 'pigeon')
@@ -31,7 +32,6 @@ export function replaceFacts(originalArr, indexesToReplaceArr, newFacts) {
 }
 
 export function restoreFacts(originalArr) {
-  console.log(1)
   return originalArr;
 }
 
@@ -84,12 +84,12 @@ export function generateRandomIndexes(arr, gridLength) {
 // Generate Tiles for each Dino in Array
 function grid(arr) {
   let dinosGrid = '';
+  let humanOrName = ''
   arr.map(el => {
-    // if (index !== 0 && index % 3 === 0) {
-    //   dinosGrid += '';
-    // }
+    if (el.species.toLowerCase() === 'human' && !el.name) humanOrName = 'Human'
+    else humanOrName = el.name
     dinosGrid += `<div class='grid-item'><h3>${
-      el.species.toLowerCase() !== 'human' ? el.species : el.name
+      el.species.toLowerCase() !== 'human' ? el.species : humanOrName
     }</h3><img src='images/${el.species.trim().toLowerCase()}.png'>
     <p>${el.species.toLowerCase() !== 'human' ? el.fact : ''}</p>
     </div>`;
@@ -97,32 +97,16 @@ function grid(arr) {
   return dinosGrid;
 }
 
-export function showComparison(
-  prevDinosArr,
-  dinosArrWithFacts,
-  formWrapperId,
-  containerId,
-  { element, text, classes }
-) {
-  document.querySelector(`#${formWrapperId}`).classList.add('hide');
+function listenerForButton(targetClass, elementToShowID) {
+  document.querySelector(`#${elementToShowID}`).classList.remove('hide');
 
-  const wrapper = document.querySelector(`#${containerId}`);
-  // let dinoLayout = document.createElement('div');
-  // dinoLayout.classList.add('dino-grid');
-  wrapper.innerHTML = grid(dinosArrWithFacts, {
-    species: 'Human',
-    weight: 200
-  });
-  //wrapper.appendChild(dinoLayout);
+  // when we remove an element with a listener we have to remove the listener as well
+  const btn = document.querySelector(`.${targetClass}`);
+  btn.removeEventListener('click', listenerForButton, false);
+  btn.remove();
 
-  createButton(
-    element,
-    text,
-    classes,
-    containerId,
-    formWrapperId,
-    prevDinosArr
-  );
+  const grid = document.querySelector('#grid');
+  grid.innerHTML = '';
 }
 
 // Yes, I could have a button in the HTML template and toggle the class, but... I wanted to practice JS
@@ -149,15 +133,27 @@ function createButton(
   });
 }
 
-function listenerForButton(targetClass, elementToShowID) {
-  document.querySelector(`#${elementToShowID}`).classList.remove('hide');
+export function showComparison(
+  prevDinosArr,
+  dinosArrWithFacts,
+  formWrapperId,
+  containerId,
+  { element, text, classes }
+) {
+  document.querySelector(`#${formWrapperId}`).classList.add('hide');
 
-  // when we remove an element with a listener we have to remove the listener as well
-  const btn = document.querySelector(`.${targetClass}`);
-  btn.removeEventListener('click', listenerForButton, false);
-  btn.remove();
+  const wrapper = document.querySelector(`#${containerId}`);
+  wrapper.innerHTML = grid(dinosArrWithFacts, {
+    species: 'Human',
+    weight: 200
+  });
 
-  const grid = document.querySelector('#grid');
-  grid.innerHTML = '';
-  //grid.remove();
+  createButton(
+    element,
+    text,
+    classes,
+    containerId,
+    formWrapperId,
+    prevDinosArr
+  );
 }

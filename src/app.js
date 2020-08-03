@@ -10,7 +10,7 @@ import {
   showComparison
 } from './helpers.js';
 
-// Since I'm using webpack, I want to import the images so trhey will be part of the output (images in public dir)
+// Since I'm using webpack, I want to import the images so they will be part of the output (images in public dir)
 /* eslint-disable no-unused-vars */
 import anklyosaurus from './images/anklyosaurus.png';
 import brachiosaurus from './images/brachiosaurus.png';
@@ -89,5 +89,3 @@ btnCompare.addEventListener('click', () => {
     }
   );
 });
-
-// On button click, prepare and display infographic
