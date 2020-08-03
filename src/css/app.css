@@ -182,7 +182,7 @@ select {
   display: none;
 }
 
-.grid {
+/* .grid {
   display: inline-block;
   width: 180px;
   height: 230px;
@@ -194,4 +194,4 @@ select {
 
 .grid img {
   width: 100%;
-}
+} */

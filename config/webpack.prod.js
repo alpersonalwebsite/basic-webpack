@@ -12,7 +12,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, '../public'),
     filename: '[name]-bundle.js',
-    publicPath: '/'
+    publicPath: ''
   },
   module: {
     rules: [
@@ -29,44 +29,11 @@ module.exports = {
         test: /\.css$/,
         use: [
           {
-            loader: MiniCssExtractPlugin.loader,
-            options: {
-              publicPath: '/public/path/to/',
-            },
+            loader: MiniCssExtractPlugin.loader
           },
           'css-loader',
         ],
       },
-      // {
-      //   test: /\.html$/,
-      //   use: [
-      // {
-      //   loader: 'file-loader',
-      //   options: {
-      //     name: '[name].html'
-      //   }
-      // },
-      // {
-      //   loader: 'extract-loader'
-      // },
-      // extract-loader == separate file not included in the bundle,
-      // {
-      //   loader: 'html-loader',
-      //   options: {
-      //     attributes: {
-      //       list: [
-      //         {
-      //           tag: 'img',
-      //           attribute: 'src',
-      //           type: 'src'
-      //         }
-      //       ]
-      //     }
-      //   }
-      // }
-
-      //   ]
-      // },
       {
         test: /\.html$/,
         use: [

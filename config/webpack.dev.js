@@ -45,35 +45,6 @@ module.exports = {
           // Remember css-loader will run first
         ]
       },
-      // {
-      //   test: /\.html$/,
-      //   use: [
-      //     // {
-      //     //   loader: 'file-loader',
-      //     //   options: {
-      //     //     name: '[name].html'
-      //     //   }
-      //     // },
-      //     // {
-      //     //   loader: 'extract-loader'
-      //     // },
-      //     // extract-loader == separate file not included in the bundle,
-      //     {
-      //       loader: 'html-loader',
-      //       options: {
-      //         attributes: {
-      //           list: [
-      //             {
-      //               tag: 'img',
-      //               attribute: 'src',
-      //               type: 'src'
-      //             }
-      //           ]
-      //         }
-      //       }
-      //     }
-      //   ]
-      // },
       {
         test: /\.html$/,
         use: [
@@ -91,7 +62,6 @@ module.exports = {
               name: 'images/[name].[ext]'
             }
           }
-          // Remember css-loader will run first
         ]
       }
     ]
