@@ -11,7 +11,7 @@ function Dino(obj) {
 export let dinos = Dinos
 
 // Create 9 Dino Objects
-// This are going to be part of the Window object
+// These are going to be part of the Window object
 Dinos.map(element => {
   global[element.species] = new Dino(element);
 });
