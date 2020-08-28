@@ -30,7 +30,7 @@
     "@babel/register": "^7.10.5",
     "babel-loader": "^8.1.0",
     "babel-plugin-transform-async-to-promises": "^0.8.15",
-    "css-loader": "^4.2.1",
+    "css-loader": "^4.2.2",
     "eslint": "^7.6.0",
     "extract-text-webpack-plugin": "^3.0.2",
     "file-loader": "^6.0.0",
