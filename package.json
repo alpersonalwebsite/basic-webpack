@@ -31,7 +31,7 @@
     "babel-loader": "^8.1.0",
     "babel-plugin-transform-async-to-promises": "^0.8.15",
     "css-loader": "^4.3.0",
-    "eslint": "^7.8.1",
+    "eslint": "^7.9.0",
     "extract-text-webpack-plugin": "^3.0.2",
     "file-loader": "^6.1.0",
     "html-loader": "^1.3.0",
