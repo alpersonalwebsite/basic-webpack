@@ -1,1 +1,34 @@
 node_modules/
+
+# webpack writes everything in public/: the bundle, the extracted CSS, the HTML that
+# HtmlWebpackPlugin generates from src/index.html, and the images file-loader copies out
+# of src/images. It was tracked, and the committed bundle had drifted from the source
+# that produces it (9333 bytes against 9389 for a fresh build of the same commit), so
+# the repository shipped a bundle its own source no longer generated. Run a build.
+/public/
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+
+# Environment
+.env
+.env.*
+
+# Keys and credentials
+*.pem
+*.key
+credentials*
+secrets/
+
+# Local databases
+*.sqlite
+*.db
+
+# Python, for the odd helper script
+__pycache__/
+
+# macOS. Two of these were committed, one at the root and one in src/.
+.DS_Store
