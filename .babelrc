@@ -3,9 +3,10 @@
     [
       "@babel/preset-env",
       {
-        "useBuiltIns": "entry",
         "debug": true,
-        "targets": ["last 2 versions"]
+        "targets": [
+          "last 2 versions"
+        ]
       }
     ]
   ],
