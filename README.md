@@ -67,6 +67,11 @@ tracked. Worse, it no longer matched the source that produces it: the committed 
 4670. Anyone reading `public/app-bundle.js` was reading output this source no longer
 generates. `public/` is ignored now.
 
+Worth being precise about the size of that drift, because it is smaller than "stale"
+suggests: diffing the identifiers in both bundles, the only one that differs is `doctype`
+against `DOCTYPE`. No application logic had changed. The reason not to track a build
+directory is that it is a build directory, not that this particular copy was dangerous.
+
 **The polyfill configuration did nothing.** `.babelrc` set `useBuiltIns: "entry"`, which
 only takes effect if the entry point explicitly imports the polyfill, and `src/app.js`
 never did. `@babel/polyfill` was declared as a runtime dependency and imported nowhere,
